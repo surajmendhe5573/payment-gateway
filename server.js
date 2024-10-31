@@ -17,7 +17,7 @@ router.post('/initiate-payment', async (req, res) => {
     request.prefer("return=representation");
     request.requestBody({
         intent: 'CAPTURE',
-        purchase_units: [{ amount: { value: '720.00', currency_code: 'USD' } }],
+        purchase_units: [{ amount: { value: '920.00', currency_code: 'USD' } }],
         application_context: {
             return_url: "http://localhost:3000/success",
             cancel_url: "http://localhost:3000/cancel",
@@ -95,46 +95,6 @@ router.get('/success', async (req, res) => {
     } catch (error) {
         res.status(500).send(error);
     }
-});
-
-// router.post('/process-refund', async (req, res) => {
-//     const captureId = req.body.captureId; // Capture ID from the completed transaction
-//     const request = new paypal.payments.CapturesRefundRequest(captureId);
-//     request.requestBody({ amount: { value: '10.00', currency_code: 'USD' } });
-//     try {
-//         const refund = await client.execute(request);
-//         res.json({ status: "Refund processed", refund });
-//     } catch (error) {
-//         res.status(500).send(error);
-//     }
-// });
-
-router.post('/process-refund', async (req, res) => {
-    const captureId = req.body.captureId; // Capture ID from the completed transaction
-    const request = new paypal.payments.CapturesRefundRequest(captureId);
-    request.requestBody({ amount: { value: '700.00', currency_code: 'USD' } });
-    
-    try {
-        const refund = await client.execute(request);
-        
-        // Log or handle the refund response
-        console.log(`Refund ID: ${refund.result.id}`); // Refund ID
-        console.log(`Refund Status: ${refund.result.status}`); // Refund status
-
-        res.json({ 
-            status: "Refund processed", 
-            refundId: refund.result.id, // Send refund ID in response
-            captureLink: refund.result.links.find(link => link.rel === 'up').href // Link to the capture
-        });
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
-
-
-
-app.get('/success-payment', (req, res) => {
-    res.send("<h3>Your transaction was completed successfully !</h3>");
 });
 
 app.get('/cancel', (req, res) => {
