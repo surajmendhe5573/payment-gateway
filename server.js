@@ -104,6 +104,7 @@ app.get('/cancel', (req, res) => {
 
 app.use('/', router);
 
+// server
 app.listen(port, ()=>{
     console.log(`server is running on http://localhost:${port}`);
     
