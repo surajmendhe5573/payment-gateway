@@ -102,7 +102,6 @@ app.get('/cancel', (req, res) => {
 });
 
 
-// Use the router
 app.use('/', router);
 
 app.listen(port, ()=>{
