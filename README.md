@@ -1,1 +1,1 @@
-Payment Gatewat
+Paypal Payment Gateway.
