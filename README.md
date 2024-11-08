@@ -1,2 +1,1 @@
-Paypal Payment Gateway
-fdghjkl;
+Paypal Payment Gateway.
