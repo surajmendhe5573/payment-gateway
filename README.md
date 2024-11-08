@@ -1,1 +1,1 @@
-Paypal Payment Gateway.
+Paypal Payment Gateway Integration.
